@@ -8,7 +8,7 @@ public class HelloRestController {
 
     @GetMapping("/hello")
     public String sayHello() {
-    	System.out.println("Hi this Springggggggggbootttt");
+    	
         return "Hello Welcome to Rest Controller!";
     }
 }
