@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloRestController {
 
-    @GetMapping("/")
+    @GetMapping("/test")
     public String sayHello() {
-    	int a =10;
         return "Hello Welcome to Rest Controller!";
     }
+
     @PostMapping("/user")
     public ResponseEntity<String> createUser() {
         System.out.println("Post API");

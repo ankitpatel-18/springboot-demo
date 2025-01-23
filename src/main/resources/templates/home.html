@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        .google-login-button {
+          display: inline-flex;
+          align-items: center;
+          padding: 10px 20px;
+          background-color: #4285F4; /* Google blue */
+          color: white;
+          font-size: 16px;
+          margin: 10px;
+          font-weight: 600;
+          border-radius: 5px;
+          text-decoration: none;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .google-login-button:hover {
+          background-color: #357ae8; /* Darker blue */
+          transform: translateY(-2px);
+        }
+
+        .google-login-button:active {
+          transform: translateY(0);
+        }
+
+        .google-login-button img {
+          margin-right: 10px;
+          width: 20px;
+          height: 20px;
+        }
+
+        /* Optional: If you'd like to add a Google logo */
+        .google-login-button::before {
+          content: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg');
+          margin-right: 10px;
+          width: 20px;
+          height: 20px;
+        }
+        .container {
+            text-align: center; /* Centers inline elements like anchor tags */
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to the Home Page!</h1>
+
+<p>Hello, <span th:text="${user}">Username</span>!</p>
+
+<a href="/logout" class="google-login-button">Logout</a>
+
+<a href="/test" class="google-login-button">Test Rest API /test</a>
+</body>
+</html>
