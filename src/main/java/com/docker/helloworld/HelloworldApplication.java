@@ -3,9 +3,10 @@ package com.docker.helloworld;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-@SpringBootApplication
-@ComponentScan(basePackages = {"com.docker.helloworld", "com.authentication.config"})  // Explicitly include the config package
+@SpringBootApplication(scanBasePackages = "com")
+@EnableMongoRepositories(basePackages = "com.mongodb.restApi.repository")
 public class HelloworldApplication {
 
 	public static void main(String[] args) {

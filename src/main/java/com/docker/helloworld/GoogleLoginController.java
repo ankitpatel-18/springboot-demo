@@ -1,5 +1,4 @@
 package com.docker.helloworld;
-
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,30 +15,28 @@ public class GoogleLoginController {
         if (authentication != null && authentication.isAuthenticated()) {
             if (authentication.getPrincipal() instanceof OAuth2User) {
                 OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-                String username = oAuth2User.getAttribute("name");  // You can use "name" or "given_name" depending on the provider
+                String username = oAuth2User.getAttribute("name");
                 System.out.println("Authenticated username: " + username);
                 model.addAttribute("user",username);
             }
-            return "home";  // Return your home page
+            return "home";
         } else {
-            return "login";  // Redirect to login if not authenticated
+            return "login";
         }
     }
 
     @GetMapping("/login")
     public String login() {
         System.out.println("THis is Login");
-        return "login";  // Return your custom login page (login.html)
+        return "login";
     }
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
-        // Invalidate the session to log out from your Spring Boot app
+
         request.getSession().invalidate();
 
-        // Clear Spring Security context
         SecurityContextHolder.clearContext();
 
-        // Redirect to Google's logout page, which will log out the user from their Google account
         String googleLogoutUrl = "https://accounts.google.com/Logout";
 
         return "redirect:" + googleLogoutUrl;

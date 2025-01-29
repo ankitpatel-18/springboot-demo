@@ -13,26 +13,27 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrfs->csrfs.ignoringRequestMatchers("/books/**"))  //Temporary
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/login", "/logout").permitAll()  // Allow access to login and logout
                         .anyRequest().authenticated()  // Require authentication for all other requests
                 )
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/login")  // Custom login page
-                        .defaultSuccessUrl("/", true)  // Redirect to home after successful login
+                        .defaultSuccessUrl("/", true)
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/logout")  // Default Spring Security logout URL
+                        .logoutUrl("/logout")
                         .addLogoutHandler((request, response, authentication) -> {
                             try {
-                                // Redirect to Google logout URL
+
                                 response.sendRedirect("https://accounts.google.com/Logout");
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
                         })
-                        .logoutSuccessUrl("/")  // Redirect to home page after logout
-                        .permitAll());  // Allow everyone to access logout URL
+                        .logoutSuccessUrl("/")
+                        .permitAll());
 
         return http.build();
     }
