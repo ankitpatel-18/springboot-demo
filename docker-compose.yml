@@ -3,6 +3,7 @@ services:
   helloworld-app:
     build:
       context: .  # This specifies the directory containing the Dockerfile
-    image: helloworld-app:MongoDB_RestApi  # Image name and version tag
+    image: helloworld-app:MongoDB_RestApi_2  # Image name and version tag
     ports:
-      - "8080:8080"  # Map container port to host port
+      - "8080:8080" # Map container port to host port
+    network_mode: "host"  # Use host's network stack
